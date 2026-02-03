@@ -6,7 +6,7 @@ RUN go install github.com/awslabs/amazon-ecr-credential-helper/ecr-login/cli/doc
 
 # Final image has to be alpine, scratch doesn't support our env vars or credentials file
 FROM alpine:latest
-COPY --from=containrrr/watchtower:latest / /
+COPY --from=nickfedor/watchtower:latest / /
 COPY --from=build /root/go/bin/docker-credential-ecr-login /bin/docker-credential-ecr-login
 
 ENTRYPOINT ["/watchtower"]
